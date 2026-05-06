@@ -315,15 +315,26 @@ footer a:hover{color:#777;}
 @media(max-width:900px){
   #sticky-bundle{display:none!important;}
   #mobile-bar{display:block;}
+  #mobile-bundle-static{display:block!important;}
   .hero-inner,.pain-grid,.product-grid,.inf-card{grid-template-columns:1fr;}
   .steps,.reviews-grid,.pricing-grid{grid-template-columns:1fr;}
   .tech-grid{grid-template-columns:repeat(2,1fr);}
+  /* Hero: imagen primero en mobile */
+  .hero-inner{display:flex;flex-direction:column;gap:0;}
+  .hero-visual{order:-1;margin-bottom:0;}
+  .hero-product-label{border-radius:0;}
+  .hero-img-wrap{border-radius:0 0 0 0;}
+  /* Persona: texto legible sobre imagen */
   .persona-img{width:100%;border-radius:0;}
   .persona-overlay-left{display:none;}
-  .persona-content{padding:0 16px;}
-  .persona-sticky{height:52vh;min-height:300px;}
+  .persona-sticky{height:auto;min-height:0;flex-direction:column;align-items:stretch;}
+  .persona-images{position:relative;width:100%;height:52vw;min-height:200px;max-height:280px;flex-shrink:0;}
+  .persona-img{position:absolute;inset:0;width:100%;height:100%;}
+  .persona-content{position:relative;z-index:10;background:var(--crema);padding:20px 16px 16px;width:100%;}
+  .persona-dots{position:relative;left:auto;transform:none;padding:8px 0 4px;justify-content:center;}
+  .persona-scroll-section{height:auto;}
   .persona-desc{max-width:100%;}
-  .hero-img-wrap img{height:340px;}
+  .hero-img-wrap img{height:300px;}
   .sp-hero{flex-wrap:wrap;}
   .sp-urgency-badge{margin-left:0;}
   h2{font-size:26px;}
@@ -774,6 +785,52 @@ footer a:hover{color:#777;}
       </tbody>
     </table>
     <div class="vs-note"><strong>¿Por qué Royal Roots es diferente?</strong> La terapia de luz actúa en la raíz del folículo — donde realmente ocurre la caída. Es un pago único que trabaja mientras vives tu vida normal.</div>
+  </div>
+</section>
+
+<!-- ═══ MOBILE BUNDLE ESTÁTICO (solo mobile) ═══ -->
+<section id="mobile-bundle-static" class="bg-crema" style="padding:0;display:none;">
+  <div style="padding:40px 16px 8px;">
+    <div style="margin-bottom:16px;"><span class="micro-sp">Solo quedan <span class="stock-counter">38</span> unidades · Envío gratis</span></div>
+    <div class="section-label">Elige tu bundle</div>
+    <h2 style="margin-bottom:24px;">Un solo pago.<br><em>Resultados de por vida.</em></h2>
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:20px;">
+      <div class="price-card">
+        <div class="price-qty">1 Royal Roots Cap® — Solo para mí</div>
+        <div class="price-amount">$1,499</div>
+        <div class="price-currency">MXN</div>
+        <div class="price-before">$5,000 MXN</div>
+        <div class="price-disc">70% de descuento</div>
+        <button class="price-btn price-btn-secondary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 1 gorra</button>
+      </div>
+      <div class="price-card featured" style="position:relative;">
+        <div class="feat-badge">⭐ MÁS VENDIDO</div>
+        <div class="price-qty">2 Royal Roots Caps® — Yo + Un regalo</div>
+        <div class="price-amount">$2,499</div>
+        <div class="price-currency">MXN · ($1,249 cada una)</div>
+        <div class="price-before">$10,000 MXN</div>
+        <div class="price-disc">75% de descuento</div>
+        <div class="price-reciprocity">El favor que nadie pidió, pero todos agradecen.</div>
+        <button class="price-btn price-btn-primary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 2 gorras →</button>
+      </div>
+      <div class="price-card">
+        <div class="price-qty">3 Royal Roots Caps® — Pack Familia</div>
+        <div class="price-amount">$2,999</div>
+        <div class="price-currency">MXN · ($999 cada una)</div>
+        <div class="price-before">$15,000 MXN</div>
+        <div class="price-disc">80% — Mejor valor</div>
+        <p class="price-tagline">La calvicie es genética. Si tú la tienes, alguien de tu familia también.</p>
+        <button class="price-btn price-btn-secondary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 3 gorras</button>
+      </div>
+    </div>
+    <div style="text-align:center;padding-bottom:16px;">
+      <img src="metodos_pago.webp" alt="Métodos de pago" style="max-width:280px;margin:0 auto;" onerror="this.style.display='none'"/>
+      <div class="price-guarantees" style="margin-top:12px;">
+        <div class="pg-item">Envío gratis</div>
+        <div class="pg-item">Pago 100% seguro</div>
+        <div class="pg-item">Sin suscripciones</div>
+      </div>
+    </div>
   </div>
 </section>
 
