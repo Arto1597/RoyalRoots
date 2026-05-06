@@ -800,7 +800,7 @@ footer a:hover{color:#777;}
         <div class="price-currency">MXN</div>
         <div class="price-before">$5,000 MXN</div>
         <div class="price-disc">70% de descuento</div>
-        <button class="price-btn price-btn-secondary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 1 gorra</button>
+        <button class="price-btn price-btn-secondary" onclick="comprarRoyalRoots(1)">Obtener 1 gorra</button>
       </div>
       <div class="price-card featured" style="position:relative;">
         <div class="feat-badge">⭐ MÁS VENDIDO</div>
@@ -810,7 +810,7 @@ footer a:hover{color:#777;}
         <div class="price-before">$10,000 MXN</div>
         <div class="price-disc">75% de descuento</div>
         <div class="price-reciprocity">El favor que nadie pidió, pero todos agradecen.</div>
-        <button class="price-btn price-btn-primary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 2 gorras →</button>
+        <button class="price-btn price-btn-primary" onclick="comprarRoyalRoots(2)">Obtener 2 gorras →</button>
       </div>
       <div class="price-card">
         <div class="price-qty">3 Royal Roots Caps® — Pack Familia</div>
@@ -819,7 +819,7 @@ footer a:hover{color:#777;}
         <div class="price-before">$15,000 MXN</div>
         <div class="price-disc">80% — Mejor valor</div>
         <p class="price-tagline">La calvicie es genética. Si tú la tienes, alguien de tu familia también.</p>
-        <button class="price-btn price-btn-secondary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 3 gorras</button>
+        <button class="price-btn price-btn-secondary" onclick="comprarRoyalRoots(3)">Obtener 3 gorras</button>
       </div>
     </div>
     <div style="text-align:center;padding-bottom:16px;">
@@ -858,7 +858,7 @@ footer a:hover{color:#777;}
         <div class="price-before">$5,000 MXN</div>
         <div class="price-disc">70% de descuento</div>
         <p class="price-tagline">Para empezar tu transformación hoy.</p>
-        <button class="price-btn price-btn-secondary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 1 gorra</button>
+        <button class="price-btn price-btn-secondary" onclick="comprarRoyalRoots(1)">Obtener 1 gorra</button>
       </div>
       <div class="price-card featured">
         <div class="feat-badge">⭐ MÁS VENDIDO</div>
@@ -868,7 +868,7 @@ footer a:hover{color:#777;}
         <div class="price-before">$10,000 MXN</div>
         <div class="price-disc">75% de descuento</div>
         <div class="price-reciprocity">Cómprale una a alguien sin que te lo pida. Ese gesto crea una deuda de gratitud que tarde o temprano te pagan — y con intereses. El favor que nadie pidió, pero todos agradecen.</div>
-        <button class="price-btn price-btn-primary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 2 gorras →</button>
+        <button class="price-btn price-btn-primary" onclick="comprarRoyalRoots(2)">Obtener 2 gorras →</button>
       </div>
       <div class="price-card">
         <div class="price-qty">3 Royal Roots Caps® — Pack Familia</div>
@@ -877,7 +877,7 @@ footer a:hover{color:#777;}
         <div class="price-before">$15,000 MXN</div>
         <div class="price-disc">80% — Mejor valor</div>
         <p class="price-tagline">La calvicie es genética. Si tú la tienes, alguien de tu familia también. Conviértete en el héroe de la familia.</p>
-        <button class="price-btn price-btn-secondary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 3 gorras</button>
+        <button class="price-btn price-btn-secondary" onclick="comprarRoyalRoots(3)">Obtener 3 gorras</button>
       </div>
     </div>
     <div style="text-align:center;">
@@ -1046,6 +1046,46 @@ document.querySelectorAll('.faq-q').forEach(q=>{
     setTimeout(function(){mostrarNotif(stock);programarSiguiente();},delay);
   }
   setTimeout(programarSiguiente,25000);
+})();
+
+// ── SHOPIFY CHECKOUT ──
+(function(){
+  var DOMAIN='kgp3bq-sy.myshopify.com';
+  var TOKEN='b88674c306a0b9fd22ff5d5c0e78f8b5';
+  var PRODUCT_GID='gid://shopify/Product/8382122885311';
+  var client=null;
+  var variantId=null;
+
+  function init(){
+    client=ShopifyBuy.buildClient({domain:DOMAIN,storefrontAccessToken:TOKEN});
+    client.product.fetch(PRODUCT_GID).then(function(p){
+      if(p&&p.variants&&p.variants[0])variantId=p.variants[0].id;
+    }).catch(function(){});
+  }
+
+  window.comprarRoyalRoots=function(qty){
+    var btns=document.querySelectorAll('.price-btn');
+    if(!client||!variantId){
+      // SDK no cargó — fallback directo a la tienda
+      window.open('https://royal-roots-7749.myshopify.com','_blank');
+      return;
+    }
+    btns.forEach(function(b){b.disabled=true;b.style.opacity='.6';b.textContent='Procesando...';});
+    client.checkout.create().then(function(co){
+      return client.checkout.addLineItems(co.id,[{variantId:variantId,quantity:qty}]);
+    }).then(function(co){
+      window.location.href=co.webUrl;
+    }).catch(function(){
+      btns.forEach(function(b){b.disabled=false;b.style.opacity='1';});
+      window.open('https://royal-roots-7749.myshopify.com','_blank');
+    });
+  };
+
+  var s=document.createElement('script');
+  s.async=true;
+  s.src='https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  s.onload=init;
+  document.head.appendChild(s);
 })();
 
 // ── SHARED COUNTDOWN ──
