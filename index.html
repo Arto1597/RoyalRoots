@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Royal Roots | Frena la Caída. Recupera tu Cabello.</title>
+  <style>
+    :root {
+      --rojo: #C0392B;
+      --rojo-oscuro: #922B21;
+      --negro: #0D0D0D;
+      --gris-oscuro: #1A1A1A;
+      --gris-medio: #2C2C2C;
+      --gris-claro: #F5F5F5;
+      --blanco: #FFFFFF;
+      --texto-muted: #888;
+      --verde: #27AE60;
+      --font: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); background: var(--negro); color: var(--blanco); line-height: 1.65; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,13,0.95); backdrop-filter: blur(8px);
+      border-bottom: 1px solid #222;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 18px; font-weight: 700; letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--rojo); }
+    .nav-cta {
+      background: var(--rojo); color: var(--blanco);
+      padding: 10px 22px; border-radius: 6px;
+      font-size: 14px; font-weight: 600; letter-spacing: 0.02em;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--rojo-oscuro); }
+
+    /* HERO */
+    .hero {
+      min-height: 92vh;
+      background: linear-gradient(135deg, #0D0D0D 0%, #1A0505 60%, #0D0D0D 100%);
+      display: flex; align-items: center;
+      padding: 80px 24px 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 70% 50%, rgba(192,57,43,0.12) 0%, transparent 65%);
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.4);
+      color: #E74C3C; padding: 6px 14px; border-radius: 20px;
+      font-size: 13px; font-weight: 600; margin-bottom: 24px;
+    }
+    .hero-badge::before { content: '●'; font-size: 8px; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .hero h1 { font-size: clamp(36px, 5vw, 58px); font-weight: 800; line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 20px; }
+    .hero h1 em { color: var(--rojo); font-style: normal; }
+    .hero p { font-size: 17px; color: #B0B0B0; line-height: 1.7; margin-bottom: 32px; max-width: 480px; }
+    .hero-stars { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; }
+    .stars { color: #F39C12; font-size: 16px; letter-spacing: 2px; }
+    .stars-text { font-size: 13px; color: #888; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--rojo); color: var(--blanco);
+      padding: 18px 36px; border-radius: 8px;
+      font-size: 17px; font-weight: 700; letter-spacing: 0.03em;
+      transition: all 0.2s; cursor: pointer; border: none;
+    }
+    .btn-primary:hover { background: var(--rojo-oscuro); transform: translateY(-1px); }
+    .btn-primary svg { width: 20px; height: 20px; }
+    .hero-guarantee { margin-top: 16px; font-size: 13px; color: #666; display: flex; align-items: center; gap: 6px; }
+    .hero-guarantee::before { content: '✓'; color: var(--verde); font-weight: 700; }
+    .hero-visual { position: relative; }
+    .hero-img-wrapper {
+      background: radial-gradient(circle, rgba(192,57,43,0.2) 0%, transparent 70%);
+      border-radius: 20px; padding: 40px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-product-mock {
+      width: 280px; height: 220px;
+      background: #1A1A1A; border-radius: 16px;
+      border: 1px solid #333;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+    }
+    .cap-icon {
+      width: 140px; height: 90px;
+      background: #111; border: 2px solid #333; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .led-grid {
+      display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; padding: 8px;
+    }
+    .led { width: 8px; height: 8px; border-radius: 50%; background: #C0392B; opacity: 0.85; }
+    .led:nth-child(even) { opacity: 0.4; background: #8B0000; }
+    .led:nth-child(3n) { animation: ledglow 2s infinite; }
+    @keyframes ledglow { 0%,100%{opacity:0.85} 50%{opacity:1;filter:brightness(1.5)} }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+    .hero-stat { background: rgba(255,255,255,0.04); border: 1px solid #2A2A2A; border-radius: 10px; padding: 14px; text-align: center; }
+    .hero-stat-num { font-size: 22px; font-weight: 800; color: var(--rojo); }
+    .hero-stat-label { font-size: 11px; color: #666; margin-top: 2px; }
+
+    /* SECTION BASE */
+    .section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-dark { background: #0A0A0A; }
+    .section-light { background: #111; }
+    .section-full { max-width: 100%; }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em; color: var(--rojo);
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
+    h2 em { color: var(--rojo); font-style: normal; }
+    .subtitle { font-size: 18px; color: #888; line-height: 1.7; max-width: 620px; }
+
+    /* DOLOR / AGITACIÓN */
+    .pain-section { background: #0A0A0A; }
+    .pain-section .section { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .pain-list { margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
+    .pain-item { display: flex; gap: 14px; align-items: flex-start; }
+    .pain-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
+    .pain-item-text h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .pain-item-text p { font-size: 14px; color: #888; line-height: 1.6; }
+    .stat-block { background: #111; border-radius: 16px; border: 1px solid #222; padding: 28px; }
+    .stat-timeline { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+    .stat-row { display: flex; align-items: center; gap: 16px; }
+    .stat-age { font-size: 13px; font-weight: 700; color: #555; width: 60px; flex-shrink: 0; }
+    .stat-bar-wrap { flex: 1; height: 28px; background: #1A1A1A; border-radius: 6px; overflow: hidden; position: relative; }
+    .stat-bar { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 10px; font-size: 13px; font-weight: 700; }
+    .stat-pct-label { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: #555; }
+
+    /* INFLUENCER */
+    .influencer-section { background: #111; }
+    .influencer-inner { max-width: 1100px; margin: 0 auto; padding: 80px 24px; }
+    .inf-card {
+      background: #0D0D0D; border: 1px solid #2A2A2A; border-radius: 20px;
+      padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    }
+    .inf-tag-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .inf-tag { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+    .tag-viral { background: rgba(192,57,43,0.2); color: #E74C3C; border: 1px solid rgba(192,57,43,0.3); }
+    .tag-fitness { background: rgba(39,174,96,0.15); color: #27AE60; border: 1px solid rgba(39,174,96,0.3); }
+    .tag-views { background: rgba(52,152,219,0.15); color: #3498DB; border: 1px solid rgba(52,152,219,0.3); }
+    .inf-quote {
+      background: #111; border-left: 3px solid var(--rojo);
+      padding: 16px 20px; border-radius: 0 10px 10px 0;
+      font-size: 15px; color: #CCC; font-style: italic; line-height: 1.7;
+      margin: 20px 0;
+    }
+    .inf-bridge {
+      background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.2);
+      border-radius: 12px; padding: 20px 24px;
+    }
+    .inf-bridge p { font-size: 15px; line-height: 1.7; color: #CCC; }
+    .inf-bridge strong { color: var(--blanco); }
+    .inf-visual { display: flex; flex-direction: column; gap: 16px; }
+    .inf-stat-card { background: #111; border: 1px solid #222; border-radius: 12px; padding: 20px; }
+    .inf-stat-num { font-size: 32px; font-weight: 800; }
+    .inf-stat-label { font-size: 13px; color: #666; margin-top: 4px; }
+    .inf-stat-card.red .inf-stat-num { color: var(--rojo); }
+    .inf-stat-card.blue .inf-stat-num { color: #3498DB; }
+    .inf-stat-card.green .inf-stat-num { color: var(--verde); }
+    .inf-link { font-size: 13px; color: #3498DB; display: flex; gap: 8px; flex-wrap: wrap; }
+    .inf-link a { padding: 4px 10px; background: rgba(52,152,219,0.1); border-radius: 6px; }
+
+    /* CÓMO FUNCIONA */
+    .how-section { background: #0A0A0A; }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .step-card { background: #111; border: 1px solid #222; border-radius: 16px; padding: 28px; position: relative; overflow: hidden; }
+    .step-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--rojo); }
+    .step-num { font-size: 56px; font-weight: 900; color: #1A1A1A; line-height: 1; margin-bottom: 16px; }
+    .step-icon { font-size: 28px; margin-bottom: 12px; }
+    .step-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .step-card p { font-size: 14px; color: #888; line-height: 1.7; }
+    .tech-specs { margin-top: 48px; background: #111; border: 1px solid #222; border-radius: 16px; padding: 32px; }
+    .tech-specs h3 { font-size: 18px; font-weight: 700; margin-bottom: 24px; color: #CCC; }
+    .specs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .spec-item { text-align: center; }
+    .spec-val { font-size: 22px; font-weight: 800; color: var(--rojo); }
+    .spec-label { font-size: 12px; color: #666; margin-top: 4px; }
+
+    /* VS USA COMPARISON */
+    .compare-section { background: #111; }
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+    .compare-table th { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #555; padding: 12px 16px; border-bottom: 1px solid #222; text-align: left; }
+    .compare-table td { padding: 14px 16px; border-bottom: 1px solid #1A1A1A; font-size: 14px; }
+    .compare-table tr.winner { background: rgba(192,57,43,0.07); }
+    .compare-table tr.winner td { border-bottom: 1px solid rgba(192,57,43,0.15); }
+    .brand-cell strong { font-size: 15px; font-weight: 700; }
+    .brand-cell span { font-size: 12px; color: #666; display: block; }
+    .price-green { color: #27AE60; font-weight: 700; }
+    .price-gray { color: #E74C3C; }
+    .winner-badge { background: var(--rojo); color: var(--blanco); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+
+    /* RESULTADOS / BEFORE-AFTER */
+    .results-section { background: #0A0A0A; }
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .result-card { background: #111; border: 1px solid #222; border-radius: 14px; overflow: hidden; }
+    .result-img { height: 180px; background: #1A1A1A; display: flex; align-items: center; justify-content: center; }
+    .result-img-mock { font-size: 13px; color: #555; text-align: center; padding: 20px; }
+    .result-body { padding: 16px; }
+    .result-body h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .result-body p { font-size: 13px; color: #777; }
+    .timeline-bar { margin-top: 40px; background: #111; border: 1px solid #222; border-radius: 14px; padding: 28px; }
+    .timeline-bar h3 { font-size: 15px; font-weight: 700; color: #CCC; margin-bottom: 20px; }
+    .tl-steps { display: flex; gap: 0; }
+    .tl-step { flex: 1; position: relative; }
+    .tl-step::after { content: ''; position: absolute; top: 16px; left: 50%; right: -50%; height: 2px; background: #222; z-index: 0; }
+    .tl-step:last-child::after { display: none; }
+    .tl-dot { width: 32px; height: 32px; border-radius: 50%; background: #1A1A1A; border: 2px solid #333; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin: 0 auto 10px; position: relative; z-index: 1; }
+    .tl-step.active .tl-dot { background: var(--rojo); border-color: var(--rojo); color: var(--blanco); }
+    .tl-step.active::after { background: rgba(192,57,43,0.4); }
+    .tl-label { font-size: 12px; text-align: center; color: #666; }
+    .tl-step.active .tl-label { color: #CCC; font-weight: 600; }
+
+    /* TESTIMONIOS */
+    .testimonios-section { background: #111; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .testi-card { background: #0D0D0D; border: 1px solid #222; border-radius: 14px; padding: 24px; }
+    .testi-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .testi-avatar { width: 40px; height: 40px; border-radius: 50%; background: #1A1A1A; border: 1px solid #333; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #CCC; font-size: 15px; flex-shrink: 0; }
+    .testi-name { font-size: 14px; font-weight: 700; }
+    .testi-date { font-size: 12px; color: #555; }
+    .testi-stars { color: #F39C12; font-size: 14px; }
+    .testi-text { font-size: 14px; color: #AAA; line-height: 1.7; }
+    .testi-verified { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--verde); margin-top: 10px; }
+
+    /* PRECIOS */
+    .pricing-section { background: #0A0A0A; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .price-card { background: #111; border: 1px solid #222; border-radius: 16px; padding: 28px; position: relative; }
+    .price-card.featured { border-color: var(--rojo); }
+    .featured-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--rojo); color: var(--blanco);
+      font-size: 11px; font-weight: 700; padding: 4px 16px; border-radius: 20px; white-space: nowrap;
+    }
+    .price-qty { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: #CCC; }
+    .price-amount { font-size: 38px; font-weight: 900; color: var(--blanco); line-height: 1; }
+    .price-before { font-size: 14px; color: #555; text-decoration: line-through; margin-top: 4px; }
+    .price-discount { display: inline-block; background: rgba(39,174,96,0.15); color: var(--verde); font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 20px; margin-top: 8px; }
+    .price-per { font-size: 13px; color: #666; margin-top: 8px; }
+    .price-btn { width: 100%; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 20px; border: none; transition: all 0.2s; }
+    .price-btn-primary { background: var(--rojo); color: var(--blanco); }
+    .price-btn-primary:hover { background: var(--rojo-oscuro); }
+    .price-btn-secondary { background: transparent; color: var(--blanco); border: 1px solid #333; }
+    .price-btn-secondary:hover { background: #1A1A1A; }
+    .payment-icons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; justify-content: center; }
+    .payment-icon { background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: 6px; padding: 4px 10px; font-size: 11px; color: #666; }
+
+    /* FAQ */
+    .faq-section { background: #111; }
+    .faq-list { margin-top: 40px; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: #0D0D0D; border: 1px solid #222; border-radius: 12px; overflow: hidden; }
+    .faq-q { padding: 18px 22px; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq-q::after { content: '+'; font-size: 20px; color: #555; font-weight: 300; }
+    .faq-a { padding: 0 22px 18px; font-size: 14px; color: #888; line-height: 1.75; }
+
+    /* FINAL CTA */
+    .final-cta { background: radial-gradient(circle at 50% 0%, rgba(192,57,43,0.2) 0%, transparent 70%), #0A0A0A; }
+    .final-cta-inner { max-width: 700px; margin: 0 auto; text-align: center; padding: 100px 24px; }
+    .final-cta h2 { font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.08; margin-bottom: 20px; }
+    .final-cta p { font-size: 18px; color: #888; margin-bottom: 40px; }
+    .guarantee-row { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-top: 24px; }
+    .guarantee-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #666; }
+    .guarantee-item::before { content: '✓'; color: var(--verde); font-weight: 700; font-size: 14px; }
+
+    /* FOOTER */
+    footer { background: #070707; border-top: 1px solid #1A1A1A; padding: 32px 24px; text-align: center; }
+    footer p { font-size: 13px; color: #444; }
+    footer a { color: #555; margin: 0 10px; }
+    footer a:hover { color: #888; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-inner, .pain-section .section, .inf-card { grid-template-columns: 1fr; }
+      .steps-grid, .results-grid, .testi-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .specs-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); }
+      .tl-steps { flex-wrap: wrap; }
+      .hero-visual { display: none; }
+      h2 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Royal<span>Roots</span></div>
+  <a href="#precios" class="nav-cta">Obtener mi gorra →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Tecnología clínica disponible hoy</div>
+      <h1>Mientras lees esto,<br>estás perdiendo<br><em>más cabello.</em></h1>
+      <p>El 25% de los hombres nota la caída antes de los 21. No es tu imaginación. Es genética, estrés y tiempo en tu contra. Pero hay una salida — sin cirugías, sin pastillas, sin citas.</p>
+      <div class="hero-stars">
+        <span class="stars">★★★★★</span>
+        <span class="stars-text">4.8 · +255 hombres que dejaron de perder cabello</span>
+      </div>
+      <a href="#precios" class="btn-primary">
+        QUIERO RECUPERAR MI CABELLO
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <p class="hero-guarantee">Sin dolor. Sin salir de casa. Solo ponértela 20 minutos.</p>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrapper">
+        <div style="text-align: center;">
+          <div class="cap-icon" style="width: 200px; height: 130px; margin: 0 auto 20px; border-radius: 16px;">
+            <div class="led-grid" style="grid-template-columns: repeat(10, 1fr); gap: 6px; padding: 16px;">
+              <div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div>
+              <div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div>
+              <div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div>
+              <div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div>
+              <div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div>
+              <div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div><div class="led"></div>
+            </div>
+          </div>
+          <div style="font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">Royal Roots Cap®</div>
+          <div style="font-size: 13px; color: #666; margin-top: 4px;">180 chips LED · Grado médico</div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">180</div><div class="hero-stat-label">chips LED médicos</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">15min</div><div class="hero-stat-label">al día es suficiente</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">4.8★</div><div class="hero-stat-label">255 reseñas reales</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOLOR -->
+<section class="pain-section section-full">
+  <div class="section">
+    <div>
+      <div class="section-label">El problema real</div>
+      <h2>Ese hueco en la coronilla no se va a <em>arreglar solo.</em></h2>
+      <div class="pain-list">
+        <div class="pain-item">
+          <div class="pain-icon">🪞</div>
+          <div class="pain-item-text">
+            <h4>El espejo que te golpea cada mañana</h4>
+            <p>Te peinas intentando disimular las entradas. Ves más cabellos en el cepillo y en la almohada. Empiezas a usar gorra para salir.</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">💊</div>
+          <div class="pain-item-text">
+            <h4>Las opciones "tradicionales" no funcionan</h4>
+            <p>Los champús son agua cara. Las pastillas te alteran las hormonas. Las clínicas te cobran miles por sesión y necesitas seguir yendo de por vida.</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">⏳</div>
+          <div class="pain-item-text">
+            <h4>El tiempo trabaja en tu contra</h4>
+            <p>Cada semana que esperas, más folículos se duermen permanentemente. La ventana para actuar se cierra.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stat-block">
+      <div class="section-label">¿A qué edad empieza la caída?</div>
+      <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #CCC;">Antes de lo que crees.</h3>
+      <p style="font-size: 13px; color: #666; margin-bottom: 20px;">Datos de la American Hair Loss Association</p>
+      <div class="stat-timeline">
+        <div class="stat-row">
+          <div class="stat-age">+21 años</div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" style="width: 25%; background: rgba(192,57,43,0.4); color: #E74C3C;">25%</div>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-age">+35 años</div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" style="width: 66%; background: rgba(192,57,43,0.6); color: #E74C3C;">66%</div>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-age">+50 años</div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" style="width: 70%; background: rgba(192,57,43,0.8); color: var(--blanco);">70%</div>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-age">+70 años</div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" style="width: 80%; background: var(--rojo); color: var(--blanco);">80%</div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size: 13px; color: #555; margin-top: 16px; line-height: 1.6;">
+        La calvicie masculina (alopecia androgénica) puede iniciar desde los <strong style="color:#CCC;">15-16 años</strong>. La genética y el estrés aceleran el proceso. El momento para actuar es <strong style="color: var(--rojo);">ahora.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- INFLUENCER VIRAL -->
+<section class="influencer-section section-full">
+  <div class="influencer-inner">
+    <div style="text-align: center; margin-bottom: 40px;">
+      <div class="section-label" style="text-align: center;">Lo que el internet no olvidó</div>
+      <h2>El influencer fitness que lo <em>escondía</em><br>con una gorra.</h2>
+    </div>
+    <div class="inf-card">
+      <div>
+        <div class="inf-tag-wrap">
+          <span class="inf-tag tag-viral">41.4M vistas</span>
+          <span class="inf-tag tag-fitness">Influencer fitness</span>
+          <span class="inf-tag tag-views">Feb 2026 · Viral mundial</span>
+        </div>
+        <p style="font-size: 16px; line-height: 1.8; color: #CCC; margin-bottom: 16px;">
+          <strong style="color: var(--blanco);">"Androgenic"</strong> — 24 años, influencer australiano de fitness y autosuperación con 87,000 seguidores en Instagram. Conocido por su contenido sobre disciplina, estética y optimización masculina.
+        </p>
+        <div class="inf-quote">
+          "Durante un livestream en Kick, un extraño se acercó por detrás y le arrancó la gorra... revelando una peluca que cubría una calvicie severa. El clip explotó con 41.4 millones de vistas."
+        </div>
+        <p style="font-size: 14px; color: #888; margin-bottom: 16px; line-height: 1.7;">
+          Había gastado <strong style="color: var(--blanco);">$300,000 USD en trasplante capilar</strong>. Todo para esconder algo que, tratado a tiempo, tiene solución mucho más accesible.
+        </p>
+        <div class="inf-bridge">
+          <p><strong>Él eligió esconderlo.</strong><br>La gorra que usaba ocultaba el problema. La Royal Roots Cap® lo resuelve. La diferencia está en qué hay adentro.</p>
+        </div>
+        <div class="inf-link" style="margin-top: 16px;">
+          <span style="font-size: 12px; color: #555;">Fuentes:</span>
+          <a href="https://www.newsweek.com/androgenic-viral-wig-snatch-video-response-11565418" target="_blank">Newsweek ↗</a>
+          <a href="https://www.ladbible.com/entertainment/looksmaxxing-influencer-androgenic-wig-revealed-929882-20260224" target="_blank">LADbible ↗</a>
+        </div>
+      </div>
+      <div class="inf-visual">
+        <!-- VIDEO NATIVO con autoplay -->
+        <div style="border-radius: 14px; overflow: hidden; border: 1px solid #2A2A2A; background: #0D0D0D;">
+          <div style="font-size: 11px; font-weight: 700; color: #E74C3C; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 14px; background: rgba(192,57,43,0.12); border-bottom: 1px solid #2A2A2A; display: flex; align-items: center; gap: 6px;">
+            <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#E74C3C;animation: pulse 1.5s infinite;"></span>
+            41.4M vistas · El momento que vio todo internet
+          </div>
+          <div style="position: relative; background: #0D0D0D;">
+            <video
+              autoplay muted loop playsinline controls
+              style="width: 100%; display: block; object-fit: contain; background: #0D0D0D;">
+              <source src="androgenic_clip.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div style="padding: 10px 14px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 8px 14px; flex: 1; text-align: center;">
+              <div style="font-size: 18px; font-weight: 800; color: var(--rojo);">$300K USD</div>
+              <div style="font-size: 11px; color: #555; margin-top: 2px;">gastó en trasplante</div>
+            </div>
+            <div style="background: rgba(39,174,96,0.1); border: 1px solid rgba(39,174,96,0.2); border-radius: 8px; padding: 8px 14px; flex: 1; text-align: center;">
+              <div style="font-size: 18px; font-weight: 800; color: var(--verde);">$1,499 MXN</div>
+              <div style="font-size: 11px; color: #555; margin-top: 2px;">cuesta prevenirlo hoy</div>
+            </div>
+          </div>
+        </div>
+        <div style="background: #0D0D0D; border: 1px solid #222; border-radius: 12px; padding: 16px;">
+          <p style="font-size: 13px; color: #666; line-height: 1.6;">La caída tratada en etapas tempranas puede detenerse y revertirse. Esperar significa perder más folículos — y más opciones.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="how-section section-full">
+  <div class="section">
+    <div class="section-label">La tecnología</div>
+    <h2>La misma tecnología de una clínica.<br><em>En una gorra normal.</em></h2>
+    <p class="subtitle">La Royal Roots Cap® usa Terapia de Luz de Baja Intensidad (LLLT) — la misma que usan dermatólogos top, adaptada para usarse desde casa.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">🧢</div>
+        <h3>Te la pones como una gorra normal</h3>
+        <p>Sin cables visibles. Sin aspecto médico. Nadie sabrá que estás en tratamiento. Ponla mientras trabajas, ves series o descansas.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">🔴</div>
+        <h3>La luz roja penetra hasta la raíz</h3>
+        <p>180 chips LED emiten luz a 660nm, 850nm y 940nm. Estas longitudes de onda penetran el cuero cabelludo y despiertan los folículos dormidos, dándoles energía ATP directamente.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">💪</div>
+        <h3>Tu cabello recupera su fuerza</h3>
+        <p>En 20-30 min por sesión logras: frenar la caída, engrosar el cabello delgado y estimular crecimiento nuevo donde aún hay folículos vivos.</p>
+      </div>
+    </div>
+    <div class="tech-specs">
+      <h3>Especificaciones técnicas</h3>
+      <div class="specs-grid">
+        <div class="spec-item">
+          <div class="spec-val">180</div>
+          <div class="spec-label">chips LED grado médico</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-val">3</div>
+          <div class="spec-label">longitudes de onda (660/850/940nm)</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-val">4</div>
+          <div class="spec-label">modos: continuo, pulso y respiración</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-val">20min</div>
+          <div class="spec-label">sesión mínima efectiva</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-bar" style="margin-top: 24px;">
+      <h3>¿Cuándo verás resultados?</h3>
+      <div class="tl-steps">
+        <div class="tl-step active">
+          <div class="tl-dot">1</div>
+          <div class="tl-label">Semana 1–2<br><span style="font-size: 11px; color: #666;">Activas folículos</span></div>
+        </div>
+        <div class="tl-step active">
+          <div class="tl-dot">2</div>
+          <div class="tl-label">Mes 1<br><span style="font-size: 11px; color: #666;">Menos caída</span></div>
+        </div>
+        <div class="tl-step active">
+          <div class="tl-dot">3</div>
+          <div class="tl-label">Mes 3<br><span style="font-size: 11px; color: #666;">Cabello más grueso</span></div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot">4</div>
+          <div class="tl-label">Semana 12–16<br><span style="font-size: 11px; color: #666;">Crecimiento nuevo</span></div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot">5</div>
+          <div class="tl-label">6+ meses<br><span style="font-size: 11px; color: #666;">Resultado completo</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VS USA COMPARISON -->
+<section class="compare-section section-full">
+  <div class="section">
+    <div class="section-label">Royal Roots vs mercado USA</div>
+    <h2>La misma tecnología que pagan<br>caro en USA. <em>A precio justo.</em></h2>
+    <p class="subtitle">Las marcas líderes en Estados Unidos usan exactamente la misma tecnología LLLT. La diferencia: su precio.</p>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Marca</th>
+          <th>Precio</th>
+          <th>Tecnología</th>
+          <th>Credencial</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="winner">
+          <td class="brand-cell"><strong>Royal Roots 🇲🇽</strong><span>royalroots.mx</span></td>
+          <td class="price-green">$1,499 MXN<br><span style="font-size:11px;color:#555;">~$75 USD · pago único</span></td>
+          <td style="font-size:13px;">LLLT 180 chips LED<br>660 / 850 / 940nm</td>
+          <td style="font-size:13px;">4.8★ · 255 reseñas</td>
+          <td><span class="winner-badge">MEJOR VALOR</span></td>
+        </tr>
+        <tr>
+          <td class="brand-cell"><strong>iRESTORE</strong><span>irestorelaser.com</span></td>
+          <td class="price-gray">$195–$695 USD<br><span style="font-size:11px;color:#555;">$3,900–$14,000 MXN</span></td>
+          <td style="font-size:13px;">Láser + LED · 2500mW</td>
+          <td style="font-size:13px;">+29,000 reseñas · FDA</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="brand-cell"><strong>Capillus</strong><span>capillus.com</span></td>
+          <td class="price-gray">$399–$999 USD<br><span style="font-size:11px;color:#555;">$7,900–$20,000 MXN</span></td>
+          <td style="font-size:13px;">Solo láser · 300+ diodos</td>
+          <td style="font-size:13px;">Clínico · FDA Cleared</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="brand-cell"><strong>HigherDOSE</strong><span>higherdose.com</span></td>
+          <td class="price-gray">$295 USD<br><span style="font-size:11px;color:#555;">~$5,900 MXN</span></td>
+          <td style="font-size:13px;">120 LED · 0 EMF</td>
+          <td style="font-size:13px;">Premios Elle, Glamour</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="brand-cell"><strong>CurrentBody</strong><span>us.currentbody.com</span></td>
+          <td class="price-gray">$260 USD<br><span style="font-size:11px;color:#555;">~$5,200 MXN</span></td>
+          <td style="font-size:13px;">180 LED · clinico</td>
+          <td style="font-size:13px;">+123% crecimiento en 12 sem</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top: 20px; background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.2); border-radius: 12px; padding: 18px 22px; font-size: 14px; color: #CCC; line-height: 1.7;">
+      <strong>¿Por qué es tan accesible?</strong> Royal Roots elimina intermediarios, distribuidores y el markup de importación. Mismo chip LED de grado médico. Misma longitud de onda. Sin el precio del mercado americano.
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios-section section-full">
+  <div class="section">
+    <div class="section-label">Lo que dicen ellos</div>
+    <h2>+255 hombres que decidieron <em>actuar.</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">AL</div>
+          <div><div class="testi-name">Alberto L.</div><div class="testi-date">Feb 2026</div></div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Lo vi en TikTok, pensé que era publicidad, pero funciona bien para la caída de cabello genética. Eficiente y fácil de usar."</p>
+        <div class="testi-verified">✓ Compra verificada</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar" style="background:#1A2A1A; color: #27AE60;">AN</div>
+          <div><div class="testi-name">Alejandro N.</div><div class="testi-date">Dic 2025</div></div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"¡Me encanta esta gorra! La uso casi diario y ya noto mucho cabello nuevo. Mi familia no para de decirme que me veo más joven."</p>
+        <div class="testi-verified">✓ Compra verificada</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar" style="background:#1A1A2A; color: #3498DB;">CM</div>
+          <div><div class="testi-name">Carlos M.</div><div class="testi-date">Mar 2026</div></div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Inversión justificada. El cabello no solo no se cae — también tiene brillo nuevo. Nunca pensé que algo tan simple funcionaría."</p>
+        <div class="testi-verified">✓ Compra verificada</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar" style="background:#2A1A1A; color: #E74C3C;">JC</div>
+          <div><div class="testi-name">Jesús C.</div><div class="testi-date">Mar 2026</div></div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"No creía en esto pero lleva como 3 semanas y se me cae menos cabello. Super bien."</p>
+        <div class="testi-verified">✓ Compra verificada</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar" style="background:#1A2A1A; color: #27AE60;">BM</div>
+          <div><div class="testi-name">Brayan M.</div><div class="testi-date">Mar 2026</div></div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"La uso mientras hago home office. Nadie sabe que estoy en tratamiento. Ya noto la diferencia en el cuero cabelludo."</p>
+        <div class="testi-verified">✓ Compra verificada</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar" style="background:#2A2A1A; color: #F39C12;">JS</div>
+          <div><div class="testi-name">Joaquín S.</div><div class="testi-date">May 2026</div></div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Excelente!! Llevaba tiempo buscando algo que no fueran pastillas o inyecciones. Esto es lo que necesitaba."</p>
+        <div class="testi-verified">✓ Compra verificada</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRECIOS -->
+<section class="pricing-section section-full" id="precios">
+  <div class="section">
+    <div class="section-label">Elige tu plan</div>
+    <h2>Un solo pago. <em>Resultados de por vida.</em></h2>
+    <p class="subtitle">Sin suscripciones. Sin citas. Sin dependencia. La gorra es tuya para siempre.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-qty">1 Royal Roots Cap®</div>
+        <div class="price-amount">$1,499</div>
+        <div style="font-size:13px;color:#555;">MXN</div>
+        <div class="price-before">$5,000 MXN</div>
+        <div class="price-discount">70% de descuento</div>
+        <button class="price-btn price-btn-secondary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 1 gorra</button>
+      </div>
+      <div class="price-card featured">
+        <div class="featured-badge">MÁS VENDIDO</div>
+        <div class="price-qty">2 Royal Roots Caps®</div>
+        <div class="price-amount">$2,499</div>
+        <div style="font-size:13px;color:#555;">MXN</div>
+        <div class="price-before">$10,000 MXN</div>
+        <div class="price-discount">75% · Cada una $1,249</div>
+        <button class="price-btn price-btn-primary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 2 gorras →</button>
+        <p class="price-per">Perfecta para ti y alguien de tu familia</p>
+      </div>
+      <div class="price-card">
+        <div class="price-qty">3 Royal Roots Caps®</div>
+        <div class="price-amount">$2,999</div>
+        <div style="font-size:13px;color:#555;">MXN</div>
+        <div class="price-before">$15,000 MXN</div>
+        <div class="price-discount">80% · Mejor valor · $999 c/u</div>
+        <button class="price-btn price-btn-secondary" onclick="window.open('https://royalroots.mx','_blank')">Obtener 3 gorras</button>
+        <p class="price-per">Ideal para regalar o compartir</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 32px;">
+      <div class="payment-icons">
+        <span class="payment-icon">AMEX</span>
+        <span class="payment-icon">Apple Pay</span>
+        <span class="payment-icon">Mastercard</span>
+        <span class="payment-icon">VISA</span>
+        <span class="payment-icon">Shop Pay</span>
+      </div>
+      <div class="guarantee-row" style="margin-top: 20px;">
+        <div class="guarantee-item">Envío gratis a todo México</div>
+        <div class="guarantee-item">En stock — entrega inmediata</div>
+        <div class="guarantee-item">Pago 100% seguro</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section section-full">
+  <div class="section">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2>Tus dudas sobre <em>la terapia de luz.</em></h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">¿Cuánto tiempo debo usarla y cuándo veré resultados?</div>
+        <div class="faq-a">Recomendamos sesiones de 20 a 30 minutos, de 3 a 5 veces por semana. La mayoría de los usuarios nota reducción en la caída durante el primer mes, y crecimiento de cabello nuevo y más grueso entre las semanas 12 y 16 de uso constante.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo usarla junto con Minoxidil u otros tratamientos?</div>
+        <div class="faq-a">¡Sí, es altamente recomendado! La terapia de luz roja mejora la circulación sanguínea, lo que ayuda a que tu cuero cabelludo absorba mucho mejor tratamientos tópicos como el Minoxidil o sueros capilares, potenciando los resultados de ambos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Duele o tiene efectos secundarios?</div>
+        <div class="faq-a">Cero dolor. La terapia de luz de baja intensidad (LLLT) es 100% no invasiva. No hay efectos secundarios conocidos. Es la misma tecnología que usan dermatólogos — solo que ahora está en tu casa.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Por qué hay luces que no se ven?</div>
+        <div class="faq-a">La gorra incluye luz roja visible (660nm) y luz infrarroja cercana (850nm y 940nm). El ojo humano no puede ver la luz infrarroja, pero es precisamente esta longitud de onda la que penetra más profundamente en el tejido para reparar los folículos desde la base. Si ves chips que parecen "apagados", están emitiendo luz infrarroja.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Funciona para calvicie avanzada?</div>
+        <div class="faq-a">La tecnología LLLT es más efectiva cuando aún hay folículos vivos — incluso si están dormidos. En calvicie severa (cuero cabelludo completamente liso), los resultados son más limitados. Si notas caída activa o adelgazamiento, es el momento ideal para empezar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta section-full">
+  <div class="final-cta-inner">
+    <div class="section-label" style="text-align: center; margin-bottom: 16px;">La decisión es ahora</div>
+    <h2>Tu cabello no va a<br>esperarte. <em>Tú sí.</em></h2>
+    <p>Cada día que pasa son más folículos dormidos. Cada semana de espera es cabello que pudo haberse recuperado. El momento para actuar es hoy.</p>
+    <a href="#precios" class="btn-primary" style="display: inline-flex; margin: 0 auto;">
+      OBTENER MI ROYAL ROOTS CAP®
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:20px;height:20px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <div class="guarantee-row">
+      <div class="guarantee-item">Sin cirugías ni pastillas</div>
+      <div class="guarantee-item">Envío gratis</div>
+      <div class="guarantee-item">+255 hombres satisfechos</div>
+      <div class="guarantee-item">Pago único de por vida</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-size: 15px; font-weight: 700; margin-bottom: 12px;">Royal <span style="color: var(--rojo);">Roots</span></p>
+  <p style="margin-bottom: 12px;">
+    <a href="https://royalroots.mx">royalroots.mx</a>
+    <a href="https://royalroots.mx/pages/privacidad">Privacidad</a>
+    <a href="https://royalroots.mx/pages/terminos">Términos</a>
+    <a href="https://royalroots.mx/pages/garantia">Garantía</a>
+    <a href="https://royalroots.mx/pages/contacto">Contacto</a>
+  </p>
+  <p style="font-size: 12px; color: #333;">© 2026 Royal Roots. Todos los derechos reservados. Los resultados pueden variar según el individuo. La terapia de luz LLLT no está diseñada para diagnosticar, tratar ni curar enfermedades.</p>
+</footer>
+
+</body>
+</html>
