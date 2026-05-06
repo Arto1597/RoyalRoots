@@ -993,29 +993,60 @@ document.querySelectorAll('.faq-q').forEach(q=>{
   });
 });
 
-// ── STOCK COUNTER — simula compra en tiempo real ──
+// ── NOTIFICACIONES DE COMPRA EN TIEMPO REAL ──
 (function(){
   var stock=38;
-  var targets=[33]; // bajar a 33
-  var schedules=[15000]; // después de 15 segundos
-  schedules.forEach(function(delay,i){
-    setTimeout(function(){
-      stock=targets[i];
-      document.querySelectorAll('.stock-counter').forEach(function(el){
-        el.style.transition='all .3s';
-        el.style.color='#E74C3C';
-        el.style.fontWeight='900';
-        el.textContent=stock;
-        // notificación de compra
-        var notif=document.createElement('div');
-        notif.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1A1614;color:#fff;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;padding:12px 22px;border-radius:10px;border-left:4px solid #2ECC71;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.4);opacity:0;transition:opacity .4s;white-space:nowrap;';
-        notif.innerHTML='🛒 &nbsp;Carlos de Monterrey acaba de comprar — <span style="color:#2ECC71;">¡Quedan '+stock+'!</span>';
-        document.body.appendChild(notif);
-        setTimeout(function(){notif.style.opacity='1';},50);
-        setTimeout(function(){notif.style.opacity='0';setTimeout(function(){notif.remove();},500);},4000);
-      });
-    },delay);
-  });
+  var compradores=[
+    'Carlos · Monterrey','Miguel · CDMX','Roberto · Guadalajara',
+    'Andrés · Puebla','Luis · Tijuana','Diego · Monterrey',
+    'Fernando · León','Jorge · Querétaro','Héctor · Mérida',
+    'Eduardo · Guadalajara','Raúl · CDMX','Iván · Hermosillo'
+  ];
+  var idx=0;
+
+  function mostrarNotif(stockNum){
+    var nombre=compradores[idx%compradores.length]; idx++;
+    var mob=window.innerWidth<=900;
+    var notif=document.createElement('div');
+    notif.style.cssText=[
+      'position:fixed',
+      mob?'bottom:74px':'bottom:30px',
+      'left:50%','transform:translateX(-50%)',
+      'background:#1A1614','color:#fff',
+      'font-family:Montserrat,sans-serif',
+      mob?'font-size:12px':'font-size:13px',
+      'font-weight:700',
+      mob?'padding:10px 14px':'padding:12px 22px',
+      'border-radius:10px','border-left:4px solid #2ECC71',
+      'z-index:9999','box-shadow:0 4px 20px rgba(0,0,0,.4)',
+      'opacity:0','transition:opacity .4s',
+      mob?'max-width:88vw':'max-width:420px',
+      'text-align:left'
+    ].join(';');
+    notif.innerHTML='🛒 &nbsp;<strong>'+nombre+'</strong> acaba de comprar — <span style="color:#2ECC71;">¡Quedan '+stockNum+'!</span>';
+    document.body.appendChild(notif);
+    setTimeout(function(){notif.style.opacity='1';},50);
+    setTimeout(function(){notif.style.opacity='0';setTimeout(function(){notif.remove();},500);},4000);
+  }
+
+  function bajarStock(nuevo){
+    stock=nuevo;
+    document.querySelectorAll('.stock-counter').forEach(function(el){
+      el.style.transition='all .3s';el.style.color='#E74C3C';el.style.fontWeight='900';
+      el.textContent=stock;
+    });
+    mostrarNotif(stock);
+  }
+
+  // Baja stock a los 15s
+  setTimeout(function(){bajarStock(33);},15000);
+
+  // Notificaciones recurrentes cada ~40s
+  function programarSiguiente(){
+    var delay=35000+Math.random()*15000;
+    setTimeout(function(){mostrarNotif(stock);programarSiguiente();},delay);
+  }
+  setTimeout(programarSiguiente,25000);
 })();
 
 // ── SHARED COUNTDOWN ──
