@@ -56,12 +56,18 @@ a{color:inherit;text-decoration:none;}
 .sb-ship .sb-stock-num{color:#fff;font-size:14px;font-weight:900;}
 
 /* ── STICKY MOBILE BAR ── */
-#mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--negro-section);border-top:2px solid var(--rojo);padding:10px 16px;}
-.mb-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.mb-price{font-family:var(--font-h);}
-.mb-price strong{font-size:17px;font-weight:900;color:#fff;}
-.mb-price span{font-size:10px;color:#666;}
-.mb-btn{background:var(--rojo);color:#fff;font-family:var(--font-h);font-size:14px;font-weight:800;padding:12px 20px;border-radius:8px;border:none;cursor:pointer;white-space:nowrap;}
+#mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--negro-section);border-top:2px solid var(--rojo);padding:8px 14px 10px;}
+.mb-inner{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.mb-left{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;}
+.mb-badge{font-family:var(--font-h);font-size:9px;font-weight:800;color:var(--rojo);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:4px;}
+.mb-bundle-name{font-family:var(--font-h);font-size:11px;font-weight:700;color:#aaa;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mb-price-row{display:flex;align-items:baseline;gap:6px;}
+.mb-price-main{font-family:var(--font-h);font-size:20px;font-weight:900;color:#fff;line-height:1;}
+.mb-price-before{font-size:10px;color:#555;text-decoration:line-through;font-weight:600;}
+.mb-disc{font-size:9px;font-weight:800;color:#2ECC71;background:rgba(46,204,113,.12);padding:1px 5px;border-radius:4px;font-family:var(--font-h);}
+.mb-urgency{font-size:9px;color:#888;margin-top:1px;}
+.mb-urgency strong{color:var(--rojo);}
+.mb-btn{background:var(--rojo);color:#fff;font-family:var(--font-h);font-size:12px;font-weight:800;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;white-space:nowrap;line-height:1.3;text-align:center;flex-shrink:0;}
 
 /* ── NAV ── */
 nav{position:sticky;top:0;z-index:800;background:rgba(246,242,236,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--borde);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
@@ -238,16 +244,31 @@ h2 em{color:var(--rojo);font-style:normal;}
 .comfort-item::before{content:'✓';color:var(--verde);font-weight:800;font-size:15px;}
 
 /* ── VS COMPARISON ── */
-.vs-table{width:100%;border-collapse:collapse;margin-top:36px;background:var(--blanco);border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07);}
-.vs-table th{font-family:var(--font-h);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);padding:14px 18px;background:var(--gris-card);border-bottom:1px solid var(--borde);text-align:left;}
-.vs-table td{padding:15px 18px;border-bottom:1px solid var(--borde);font-size:13px;color:var(--muted);vertical-align:top;}
-.vs-table tr.rr-row{background:#FFF8F7;}
-.vs-table tr.rr-row td{border-bottom:1px solid rgba(192,57,43,.1);color:var(--texto);}
-.vs-table tr:last-child td{border-bottom:none;}
-.check{color:var(--verde);font-weight:800;margin-right:5px;}
-.cross{color:var(--rojo);margin-right:5px;}
-.brand-col strong{font-family:var(--font-h);font-size:14px;font-weight:800;color:var(--texto);}
-.brand-col span{font-size:11px;color:var(--muted2);display:block;margin-top:2px;}
+.vs-wrap{width:100%;overflow-x:auto;margin-top:36px;-webkit-overflow-scrolling:touch;}
+.vs-table{width:100%;border-collapse:separate;border-spacing:0;background:transparent;min-width:620px;}
+.vs-table thead tr th{padding:0;border:none;background:transparent;text-align:center;}
+.vs-th-feature{width:130px;min-width:110px;}
+.vs-th-inner{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:18px 10px 16px;height:100%;}
+.vs-rr-th .vs-th-inner{background:var(--negro-section);border-radius:14px 14px 0 0;border-top:3px solid var(--rojo);padding:16px 10px 16px;}
+.vs-comp-th .vs-th-inner{background:var(--gris-card);border-radius:10px 10px 0 0;border-top:2px solid var(--borde);}
+.vs-th-logo{width:70px;height:auto;margin-bottom:8px;filter:brightness(0) invert(1);}
+.vs-th-name{font-family:var(--font-h);font-size:12px;font-weight:800;color:#fff;line-height:1.25;text-align:center;}
+.vs-rr-badge{background:var(--rojo);color:#fff;font-family:var(--font-h);font-size:8px;font-weight:800;padding:2px 8px;border-radius:20px;margin-top:6px;letter-spacing:.06em;}
+.vs-comp-name{font-family:var(--font-h);font-size:11px;font-weight:700;color:var(--texto);line-height:1.25;text-align:center;}
+.vs-comp-sub{font-size:9px;color:var(--muted2);font-weight:500;margin-top:3px;}
+.vs-table tbody tr{background:transparent;}
+.vs-table tbody tr:last-child .vs-td-rr,.vs-table tbody tr:last-child .vs-td-comp,.vs-table tbody tr:last-child .vs-feat{border-radius:0 0 0 0;}
+.vs-feat{font-family:var(--font-h);font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);padding:16px 12px;background:var(--blanco);border-bottom:1px solid var(--borde);vertical-align:middle;}
+.vs-td-rr{background:#1a1a1a;padding:15px 12px;border-bottom:1px solid rgba(192,57,43,.2);text-align:center;vertical-align:middle;}
+.vs-td-comp{background:var(--blanco);padding:15px 12px;border-bottom:1px solid var(--borde);text-align:center;vertical-align:middle;}
+.vs-table tbody tr:last-child .vs-td-rr{border-radius:0 0 14px 14px;border-bottom:none;}
+.vs-table tbody tr:last-child .vs-td-comp{border-bottom:none;}
+.vs-val-rr{font-family:var(--font-h);font-size:13px;font-weight:700;color:#fff;line-height:1.35;}
+.vs-val-rr .check{color:#2ECC71;font-size:16px;display:block;margin-bottom:2px;}
+.vs-val-comp{font-size:12px;color:var(--muted);line-height:1.35;}
+.vs-val-comp .cross{color:var(--rojo);font-size:14px;display:block;margin-bottom:2px;}
+.check{color:var(--verde);font-weight:800;margin-right:4px;}
+.cross{color:var(--rojo);margin-right:4px;}
 .best-badge{background:var(--rojo);color:#fff;font-family:var(--font-h);font-size:9px;font-weight:800;padding:2px 9px;border-radius:20px;display:inline-block;margin-top:5px;}
 .vs-note{margin-top:16px;background:var(--rojo-light);border:1px solid rgba(192,57,43,.2);border-radius:12px;padding:16px 20px;font-size:13px;color:var(--texto);line-height:1.7;}
 
@@ -385,8 +406,17 @@ footer a:hover{color:#777;}
 <!-- ═══ STICKY MOBILE BAR ═══ -->
 <div id="mobile-bar">
   <div class="mb-inner">
-    <div class="mb-price"><strong>$1,499 MXN</strong><br><span>Envío gratis · En stock</span></div>
-    <button class="mb-btn" onclick="location.href='#precios'">OBTENER AHORA →</button>
+    <div class="mb-left">
+      <div class="mb-badge">🔥 MEJOR OPCIÓN</div>
+      <div class="mb-bundle-name">Kit Familiar · 3 gorras</div>
+      <div class="mb-price-row">
+        <span class="mb-price-main">$2,999 MXN</span>
+        <span class="mb-price-before">$4,497</span>
+        <span class="mb-disc">-33%</span>
+      </div>
+      <div class="mb-urgency">⚡ Solo <strong id="mb-stock">33</strong> kits disponibles</div>
+    </div>
+    <button class="mb-btn" onclick="comprarRoyalRoots(3,this)">OBTENER<br>AHORA →</button>
   </div>
 </div>
 
@@ -739,50 +769,80 @@ footer a:hover{color:#777;}
     <div class="section-label">La comparación honesta</div>
     <h2>Royal Roots vs<br><em>Tratamientos Tradicionales</em></h2>
     <p class="subtitle">No todos los métodos funcionan igual. Compara y decide.</p>
+    <div class="vs-wrap">
     <table class="vs-table">
       <thead>
         <tr>
-          <th>Método</th><th>Precio</th><th>Cómo actúa</th><th>Efectos</th><th>Comodidad</th>
+          <th class="vs-th-feature"></th>
+          <th class="vs-rr-th">
+            <div class="vs-th-inner">
+              <img src="Logotipo.png" class="vs-th-logo" alt="Royal Roots">
+              <div class="vs-th-name">Royal Roots Cap®</div>
+              <div class="vs-rr-badge">🔥 MEJOR OPCIÓN</div>
+            </div>
+          </th>
+          <th class="vs-comp-th">
+            <div class="vs-th-inner">
+              <div class="vs-comp-name">Trasplante<br>Capilar</div>
+              <div class="vs-comp-sub">Cirugía</div>
+            </div>
+          </th>
+          <th class="vs-comp-th">
+            <div class="vs-th-inner">
+              <div class="vs-comp-name">Clínicas<br>Capilares</div>
+              <div class="vs-comp-sub">Mesoterapia</div>
+            </div>
+          </th>
+          <th class="vs-comp-th">
+            <div class="vs-th-inner">
+              <div class="vs-comp-name">Pastillas<br>Finasteride</div>
+              <div class="vs-comp-sub">Hormonal</div>
+            </div>
+          </th>
+          <th class="vs-comp-th">
+            <div class="vs-th-inner">
+              <div class="vs-comp-name">Champús<br>/ Lociones</div>
+              <div class="vs-comp-sub">Tópicos</div>
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr class="rr-row">
-          <td class="brand-col"><strong>Royal Roots Cap®</strong><span>Terapia LLLT · Luz infrarroja</span><span class="best-badge">MEJOR OPCIÓN</span></td>
-          <td style="color:var(--verde);font-family:var(--font-h);font-weight:800;">$1,499 MXN<br><span style="font-size:10px;color:var(--muted2);">pago único</span></td>
-          <td><span class="check">✓</span>Activa folículos desde la raíz</td>
-          <td><span class="check">✓</span>Cero efectos secundarios</td>
-          <td><span class="check">✓</span>20 min desde casa</td>
+        <tr>
+          <td class="vs-feat">Precio</td>
+          <td class="vs-td-rr"><div class="vs-val-rr"><span class="check">✓</span>$1,499 MXN<br><span style="font-size:10px;color:#aaa;font-weight:500;">pago único</span></div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>$50,000–$300,000</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>$3,000–$8,000/mes</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>$600–$2,000/mes</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>$300–$800/mes</div></td>
         </tr>
         <tr>
-          <td class="brand-col"><strong>Trasplante capilar</strong><span>Procedimiento quirúrgico</span></td>
-          <td style="color:var(--rojo);font-family:var(--font-h);font-weight:700;">$50,000–$300,000 MXN</td>
-          <td><span class="cross">✗</span>Cirugía invasiva</td>
-          <td><span class="cross">✗</span>Cicatrices, dolor, riesgo</td>
-          <td><span class="cross">✗</span>Semanas de recuperación</td>
+          <td class="vs-feat">Cómo actúa</td>
+          <td class="vs-td-rr"><div class="vs-val-rr"><span class="check">✓</span>Activa folículos desde la raíz</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Cirugía invasiva</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Solo mientras pagas</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Dependencia de por vida</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Solo en superficie</div></td>
         </tr>
         <tr>
-          <td class="brand-col"><strong>Clínicas capilares</strong><span>Inyecciones / mesoterapia</span></td>
-          <td style="color:var(--rojo);font-family:var(--font-h);font-weight:700;">$3,000–$8,000 MXN/mes</td>
-          <td><span class="cross">✗</span>Solo mientras pagas</td>
-          <td><span class="cross">✗</span>Dolor y traslados</td>
-          <td><span class="cross">✗</span>Citas + tráfico</td>
+          <td class="vs-feat">Efectos</td>
+          <td class="vs-td-rr"><div class="vs-val-rr"><span class="check">✓</span>Cero efectos secundarios</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Cicatrices, dolor</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Dolor y traslados</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Disfunción, irritación</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Sin resultados reales</div></td>
         </tr>
         <tr>
-          <td class="brand-col"><strong>Pastillas / Finasteride</strong><span>Tratamiento hormonal</span></td>
-          <td style="color:var(--rojo);font-family:var(--font-h);font-weight:700;">$600–$2,000 MXN/mes</td>
-          <td><span class="cross">✗</span>Dependencia de por vida</td>
-          <td><span class="cross">✗</span>Disfunción, irritación</td>
-          <td><span class="cross">✗</span>Receta y seguimiento</td>
-        </tr>
-        <tr>
-          <td class="brand-col"><strong>Champús / Lociones</strong><span>Productos tópicos</span></td>
-          <td style="color:var(--rojo);font-family:var(--font-h);font-weight:700;">$300–$800 MXN/mes</td>
-          <td><span class="cross">✗</span>Solo en superficie</td>
-          <td><span class="cross">✗</span>Sin resultados reales</td>
-          <td><span class="cross">✗</span>Al dejarlos, cae peor</td>
+          <td class="vs-feat">Comodidad</td>
+          <td class="vs-td-rr"><div class="vs-val-rr"><span class="check">✓</span>20 min desde casa</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Semanas de recuperación</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Citas + tráfico</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Receta y seguimiento</div></td>
+          <td class="vs-td-comp"><div class="vs-val-comp"><span class="cross">✗</span>Al dejarlos, cae peor</div></td>
         </tr>
       </tbody>
     </table>
+    </div>
     <div class="vs-note"><strong>¿Por qué Royal Roots es diferente?</strong> La terapia de luz actúa en la raíz del folículo — donde realmente ocurre la caída. Es un pago único que trabaja mientras vives tu vida normal.</div>
   </div>
 </section>
