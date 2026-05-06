@@ -1054,25 +1054,33 @@ document.querySelectorAll('.faq-q').forEach(q=>{
   var TOKEN='b88674c306a0b9fd22ff5d5c0e78f8b5';
   var PRODUCT_GID='gid://shopify/Product/8382122885311';
   var client=null;
-  var variantId=null;
+  // variants[0]=1 gorra, variants[1]=2 gorras, variants[2]=3 gorras (ordenados por precio)
+  var variants=[];
 
   function init(){
     client=ShopifyBuy.buildClient({domain:DOMAIN,storefrontAccessToken:TOKEN});
     client.product.fetch(PRODUCT_GID).then(function(p){
-      if(p&&p.variants&&p.variants[0])variantId=p.variants[0].id;
+      if(!p||!p.variants)return;
+      // Ordenar por precio ascendente para mapear bundle 1→2→3
+      variants=p.variants.slice().sort(function(a,b){
+        return parseFloat(a.price)-parseFloat(b.price);
+      });
     }).catch(function(){});
   }
 
-  window.comprarRoyalRoots=function(qty){
+  window.comprarRoyalRoots=function(bundle){
+    // bundle: 1, 2 o 3 → índice 0, 1, 2 del array de variants
+    var idx=bundle-1;
+    var v=variants[idx]||variants[0];
     var btns=document.querySelectorAll('.price-btn');
-    if(!client||!variantId){
-      // SDK no cargó — fallback directo a la tienda
+    if(!client||!v){
       window.open('https://royal-roots-7749.myshopify.com','_blank');
       return;
     }
     btns.forEach(function(b){b.disabled=true;b.style.opacity='.6';b.textContent='Procesando...';});
+    // Directo a checkout — quantity siempre 1, el precio del variant ya incluye el descuento del bundle
     client.checkout.create().then(function(co){
-      return client.checkout.addLineItems(co.id,[{variantId:variantId,quantity:qty}]);
+      return client.checkout.addLineItems(co.id,[{variantId:v.id,quantity:1}]);
     }).then(function(co){
       window.location.href=co.webUrl;
     }).catch(function(){
