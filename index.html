@@ -97,14 +97,21 @@ nav{position:sticky;top:0;z-index:800;background:rgba(246,242,236,0.96);backdrop
 .hero h1{font-family:var(--font-h);font-size:clamp(32px,4vw,54px);font-weight:900;line-height:1.06;letter-spacing:-1.5px;color:var(--texto);margin-bottom:16px;}
 .hero h1 em{color:var(--rojo);font-style:normal;}
 .hero-sub{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:24px;max-width:480px;}
-.hero-stars-row{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
-.hero-stars{color:var(--amarillo);font-size:16px;letter-spacing:1px;}
-.hero-stars-text{font-size:13px;color:var(--muted);}
+.hero-stars-row{display:flex;align-items:center;gap:10px;background:var(--blanco);border:1.5px solid var(--borde);border-radius:12px;padding:10px 16px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);width:fit-content;}
+.hero-stars{color:var(--amarillo);font-size:18px;letter-spacing:2px;}
+.hero-stars-text{font-size:13px;font-weight:700;color:var(--texto);}
+.hero-stars-text em{font-style:normal;color:var(--verde);font-weight:800;}
 .btn-hero{display:inline-flex;align-items:center;gap:10px;background:var(--rojo);color:#fff;font-family:var(--font-h);padding:17px 32px;border-radius:8px;font-size:16px;font-weight:800;letter-spacing:.04em;transition:all .2s;border:none;cursor:pointer;}
 .btn-hero:hover{background:var(--rojo-dark);transform:translateY(-2px);}
 .hero-guarantee{margin-top:12px;font-size:12px;color:var(--muted2);display:flex;align-items:center;gap:6px;}
 .hero-guarantee::before{content:'✓';color:var(--verde);font-weight:800;}
-.hero-stock{display:flex;align-items:center;gap:7px;margin-top:8px;}
+.hero-stock{display:flex;align-items:center;gap:8px;margin-top:14px;background:rgba(30,132,73,.07);border:1px solid rgba(30,132,73,.2);border-radius:10px;padding:10px 14px;width:fit-content;}
+.stock-text{font-size:14px;color:var(--muted);font-weight:600;}
+.stock-text strong{color:var(--verde);font-size:15px;}
+.hero-payment{margin-top:16px;}
+.hero-payment p{font-size:10px;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;}
+.hero-product-caption{text-align:center;padding:10px 16px 14px;font-size:12px;color:var(--muted2);line-height:1.5;}
+.hero-product-caption strong{font-family:var(--font-h);font-size:13px;color:var(--texto);display:block;margin-bottom:2px;}
 .stock-dot{width:7px;height:7px;border-radius:50%;background:var(--verde);animation:blink 1.5s infinite;}
 .stock-text{font-size:12px;color:var(--muted);}
 .stock-text strong{color:var(--verde);}
@@ -452,7 +459,7 @@ footer a:hover{color:#777;}
       <p class="hero-sub">El 25% de los hombres nota la caída antes de los 21. No es tu imaginación — es genética y tiempo en tu contra. Hay una salida. Sin cirugías. Sin pastillas. Sin citas.</p>
       <div class="hero-stars-row">
         <span class="hero-stars">★★★★★</span>
-        <span class="hero-stars-text">4.8 · +255 hombres que frenaron la caída</span>
+        <span class="hero-stars-text"><em>4.8</em> · +255 hombres que frenaron la caída</span>
       </div>
       <a href="#precios" class="btn-hero">QUIERO RECUPERAR MI CABELLO →</a>
       <p class="hero-guarantee">Sin dolor · Sin salir de casa · Solo 20 min al día</p>
@@ -460,11 +467,12 @@ footer a:hover{color:#777;}
         <span class="stock-dot"></span>
         <span class="stock-text">En stock — <strong><span class="stock-counter">38</span> unidades disponibles.</strong> Envío en 24h.</span>
       </div>
+      <div class="hero-payment">
+        <p>Pago 100% seguro</p>
+        <img src="metodos_pago.webp" alt="Métodos de pago" style="max-width:240px;display:block;" onerror="this.style.display='none'"/>
+      </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-product-label">
-        La gorra que usa <span>luz roja clínica</span> para hacer crecer tu cabello
-      </div>
       <div class="hero-img-wrap">
         <img src="chico_gorra.png" alt="Royal Roots Cap en uso" onerror="this.src='producto_mejorado.png'"/>
         <div class="hero-img-overlay">
@@ -476,6 +484,10 @@ footer a:hover{color:#777;}
             <div class="hio-stat"><div class="hio-num">4.8★</div><div class="hio-label">255 reseñas reales</div></div>
           </div>
         </div>
+      </div>
+      <div class="hero-product-caption">
+        <strong>La gorra que usa luz roja clínica para hacer crecer tu cabello</strong>
+        Tecnología LLLT · 180 chips LED médicos · Uso desde casa
       </div>
     </div>
   </div>
