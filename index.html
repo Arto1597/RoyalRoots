@@ -47,12 +47,13 @@ a{color:inherit;text-decoration:none;}
 .sb-qty{font-size:10px;font-weight:700;color:#888;font-family:var(--font-h);}
 .sb-price{font-size:16px;font-weight:900;color:#fff;font-family:var(--font-h);line-height:1.1;}
 .sb-meta{display:flex;gap:6px;align-items:center;margin-top:2px;}
-.sb-before{font-size:9px;color:#444;text-decoration:line-through;}
-.sb-discount{font-size:9px;color:#2ECC71;font-weight:700;}
+.sb-before{font-size:10px;color:#888;text-decoration:line-through;font-weight:600;}
+.sb-discount{font-size:10px;color:#2ECC71;font-weight:800;background:rgba(46,204,113,.12);padding:1px 6px;border-radius:4px;}
 .sb-cta{display:block;width:100%;background:var(--rojo);color:#fff;font-family:var(--font-h);font-size:12px;font-weight:800;padding:11px;border-radius:8px;border:none;cursor:pointer;text-align:center;margin-top:10px;transition:background .2s;letter-spacing:.04em;}
 .sb-cta:hover{background:var(--rojo-dark);}
-.sb-ship{font-size:9px;color:#444;text-align:center;margin-top:7px;}
-.sb-ship span{color:#2ECC71;}
+.sb-ship{font-size:12px;font-weight:700;font-family:var(--font-h);color:#ccc;text-align:center;margin-top:10px;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.25);border-radius:8px;padding:8px 10px;line-height:1.5;}
+.sb-ship span{color:#2ECC71;font-size:13px;}
+.sb-ship .sb-stock-num{color:#fff;font-size:14px;font-weight:900;}
 
 /* ── STICKY MOBILE BAR ── */
 #mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--negro-section);border-top:2px solid var(--rojo);padding:10px 16px;}
@@ -102,8 +103,8 @@ nav{position:sticky;top:0;z-index:800;background:rgba(246,242,236,0.96);backdrop
 .stock-text{font-size:12px;color:var(--muted);}
 .stock-text strong{color:var(--verde);}
 .hero-visual{position:relative;}
-.hero-product-label{background:var(--negro-section);color:#fff;border-radius:10px 10px 0 0;padding:10px 16px;font-family:var(--font-h);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;}
-.hero-product-label span{color:var(--rojo);}
+.hero-product-label{background:var(--negro-section);color:#fff;border-radius:10px 10px 0 0;padding:12px 16px;font-family:var(--font-h);font-size:13px;font-weight:800;letter-spacing:.03em;text-transform:none;text-align:center;display:block;line-height:1.4;}
+.hero-product-label span{color:var(--rojo);font-weight:900;}
 .hero-img-wrap{border-radius:0 0 16px 16px;overflow:hidden;position:relative;}
 .hero-img-wrap img{width:100%;height:460px;object-fit:cover;display:block;}
 .hero-img-overlay{position:absolute;bottom:0;left:0;right:0;background:rgba(26,22,20,.88);backdrop-filter:blur(4px);padding:14px 16px;}
@@ -145,7 +146,7 @@ h2 em{color:var(--rojo);font-style:normal;}
 .persona-scroll-section{height:160vh;position:relative;}
 .persona-sticky{position:sticky;top:0;height:55vh;min-height:340px;max-height:480px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
 .persona-images{position:absolute;inset:0;display:flex;justify-content:flex-end;}
-.persona-img{position:absolute;right:0;top:0;width:55%;height:100%;background-size:cover;background-position:center center;opacity:0;transition:opacity .5s ease;border-radius:20px 0 0 20px;}
+.persona-img{position:absolute;right:0;top:0;width:55%;height:100%;background-size:cover;background-position:center top;opacity:0;transition:opacity .5s ease;border-radius:20px 0 0 20px;}
 .persona-img.active{opacity:1;}
 .persona-overlay-left{position:absolute;left:0;top:0;bottom:0;width:50%;background:linear-gradient(to right,var(--crema) 60%,transparent 100%);z-index:2;}
 .persona-content{position:relative;z-index:10;max-width:1100px;width:100%;padding:0 20px;}
@@ -265,8 +266,8 @@ h2 em{color:var(--rojo);font-style:normal;}
 .price-qty{font-family:var(--font-h);font-size:13px;font-weight:800;color:var(--muted);margin-bottom:6px;}
 .price-amount{font-family:var(--font-h);font-size:38px;font-weight:900;color:var(--texto);line-height:1;}
 .price-currency{font-size:13px;color:var(--muted2);margin-top:2px;}
-.price-before{font-size:12px;color:var(--muted2);text-decoration:line-through;margin-top:5px;}
-.price-disc{display:inline-block;background:var(--verde-bg);color:var(--verde);font-family:var(--font-h);font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;margin-top:7px;}
+.price-before{font-size:14px;color:#999;text-decoration:line-through;margin-top:5px;font-weight:600;}
+.price-disc{display:inline-block;background:var(--rojo);color:#fff;font-family:var(--font-h);font-size:13px;font-weight:900;padding:5px 14px;border-radius:20px;margin-top:8px;letter-spacing:.02em;}
 .price-tagline{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.6;font-style:italic;}
 .price-reciprocity{font-size:12px;color:var(--texto);margin-top:8px;line-height:1.65;background:var(--crema);border-radius:8px;padding:10px 12px;border-left:3px solid var(--rojo);}
 .price-btn{display:block;width:100%;padding:13px;border-radius:8px;font-family:var(--font-h);font-size:13px;font-weight:800;cursor:pointer;border:none;margin-top:16px;letter-spacing:.03em;transition:all .2s;}
@@ -368,7 +369,7 @@ footer a:hover{color:#777;}
     <div class="sb-meta"><span class="sb-before">$15,000</span><span class="sb-discount">80% off</span></div>
   </div>
   <a href="#precios" class="sb-cta">OBTENER MI GORRA →</a>
-  <div class="sb-ship"><span>✓</span> Envío gratis · 38 unidades</div>
+  <div class="sb-ship"><span>✓ Envío gratis a todo México</span><br>Solo quedan <span class="sb-stock-num stock-counter">38</span> unidades</div>
 </div>
 
 <!-- ═══ STICKY MOBILE BAR ═══ -->
@@ -417,7 +418,7 @@ footer a:hover{color:#777;}
       <p class="hero-guarantee">Sin dolor · Sin salir de casa · Solo 20 min al día</p>
       <div class="hero-stock">
         <span class="stock-dot"></span>
-        <span class="stock-text">En stock — <strong>38 unidades disponibles.</strong> Envío en 24h.</span>
+        <span class="stock-text">En stock — <strong><span class="stock-counter">38</span> unidades disponibles.</strong> Envío en 24h.</span>
       </div>
     </div>
     <div class="hero-visual">
@@ -780,7 +781,7 @@ footer a:hover{color:#777;}
 <!-- ═══ PRECIOS ═══ -->
 <section class="bg-crema" style="padding:0;" id="precios">
   <div class="section">
-    <div style="margin-bottom:20px;"><span class="micro-sp">Solo quedan 38 unidades · Envío en 24h gratis</span></div>
+    <div style="margin-bottom:20px;"><span class="micro-sp">Solo quedan <span class="stock-counter">38</span> unidades · Envío en 24h gratis</span></div>
     <div class="section-label">Elige tu bundle</div>
     <h2>Un solo pago.<br><em>Resultados de por vida.</em></h2>
     <div class="pricing-urgency">
@@ -792,7 +793,7 @@ footer a:hover{color:#777;}
         <div class="cd-sep">:</div>
         <div class="cd-block"><div class="cd-num" id="cd-s">12</div><div class="cd-label">seg</div></div>
       </div>
-      <div style="font-size:12px;color:#888;margin-left:auto;">Solo quedan <strong style="color:var(--rojo);">38 unidades</strong></div>
+      <div style="font-size:12px;color:#888;margin-left:auto;">Solo quedan <strong style="color:var(--rojo);"><span class="stock-counter">38</span> unidades</strong></div>
     </div>
     <div class="pricing-grid">
       <div class="price-card">
@@ -873,7 +874,7 @@ footer a:hover{color:#777;}
     <div style="margin-bottom:20px;"><span class="micro-sp" style="background:rgba(46,204,113,.15);border-color:rgba(46,204,113,.3);color:#2ECC71;">+255 satisfechos · 17 compraron hoy</span></div>
     <h2>Tu cabello no va a <em>esperarte.</em></h2>
     <p>Cada día que pasa son más folículos dormidos. Cada semana de espera es cabello que pudo recuperarse.</p>
-    <div class="final-urgency">⚡ Solo quedan 38 unidades — el stock se agota hoy</div>
+    <div class="final-urgency">⚡ Solo quedan <span class="stock-counter">38</span> unidades — el stock se agota hoy</div>
     <br/>
     <a href="#precios" class="btn-hero" style="display:inline-flex;">OBTENER MI ROYAL ROOTS CAP® →</a>
     <div class="final-g-row">
@@ -935,6 +936,31 @@ document.querySelectorAll('.faq-q').forEach(q=>{
     if(!was)item.classList.add('open');
   });
 });
+
+// ── STOCK COUNTER — simula compra en tiempo real ──
+(function(){
+  var stock=38;
+  var targets=[33]; // bajar a 33
+  var schedules=[15000]; // después de 15 segundos
+  schedules.forEach(function(delay,i){
+    setTimeout(function(){
+      stock=targets[i];
+      document.querySelectorAll('.stock-counter').forEach(function(el){
+        el.style.transition='all .3s';
+        el.style.color='#E74C3C';
+        el.style.fontWeight='900';
+        el.textContent=stock;
+        // notificación de compra
+        var notif=document.createElement('div');
+        notif.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1A1614;color:#fff;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;padding:12px 22px;border-radius:10px;border-left:4px solid #2ECC71;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.4);opacity:0;transition:opacity .4s;white-space:nowrap;';
+        notif.innerHTML='🛒 &nbsp;Carlos de Monterrey acaba de comprar — <span style="color:#2ECC71;">¡Quedan '+stock+'!</span>';
+        document.body.appendChild(notif);
+        setTimeout(function(){notif.style.opacity='1';},50);
+        setTimeout(function(){notif.style.opacity='0';setTimeout(function(){notif.remove();},500);},4000);
+      });
+    },delay);
+  });
+})();
 
 // ── SHARED COUNTDOWN ──
 (function(){
